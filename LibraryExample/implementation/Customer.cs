@@ -3,26 +3,25 @@ namespace design.LibraryExample.implementation;
 public class Customer : IObserver
 {
 
-    private Book? borrowedBook;
-    private String seekingBook;
+    private IProduct? borrowedProduct;
+    private String seekingProduct;
 
-    public Customer(String bookName)
+    public Customer(String product)
     {
-        seekingBook = bookName;
+        seekingProduct = product;
     }
 
-    public void lookForBook()
+    public void lookForBook(IRenters renter)
     {
-        var library = Library.getInstance();
 
-        borrowedBook = library.borrowBook(seekingBook);
+        borrowedProduct = renter.borrowProduct(seekingProduct);
 
-        if (borrowedBook == null)
+        if (borrowedProduct == null)
         {
-            Console.WriteLine($"I didn't got the {seekingBook} I'm looking for");
+            Console.WriteLine($"I didn't got the {seekingProduct} I'm looking for");
             if (!isSubscribed)
             {
-                Console.WriteLine("I will ask to the library notifies me when new books arrival");
+                Console.WriteLine($"I will ask to the {renter.establishmentName} notifies me when new books arrival");
                 library.registerObserver(this);
                 isSubscribed = true;
             };

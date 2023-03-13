@@ -1,15 +1,15 @@
 namespace design.LibraryExample.implementation;
 
-public class Book : IProduct
+public class Car : IProduct
 {
     public String name { get; }
-    public String author { get; }
+    public String brand { get; }
     public int year { get; }
 
-    public Book(String _name, String _author, int _year)
+    public Car(String _name, String _brand, int _year)
     {
         name = _name;
-        author = _author;
+        brand = _brand;
         year = _year;
     }
 }
